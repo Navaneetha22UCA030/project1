@@ -1,0 +1,101 @@
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
+)
+
+CREATE TABLE `category` (
+  `id` int(11) NOT NULL,
+  `categoryName` varchar(255) DEFAULT NULL,
+  `categoryDescription` longtext DEFAULT NULL,
+  `creationDate` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updationDate` varchar(255) DEFAULT NULL
+)
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `userId` int(11) DEFAULT NULL,
+  `productId` varchar(255) DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `orderDate` timestamp NOT NULL DEFAULT current_timestamp(),
+  `paymentMethod` varchar(50) DEFAULT NULL,
+  `orderStatus` varchar(55) DEFAULT NULL
+)
+CREATE TABLE `ordertrackhistory` (
+  `id` int(11) NOT NULL,
+  `orderId` int(11) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  `remark` mediumtext DEFAULT NULL,
+  `postingDate` timestamp NOT NULL DEFAULT current_timestamp()
+)
+CREATE TABLE `power_tools` (
+  `id` int(11) NOT NULL,
+  `tool_name` varchar(255) NOT NULL,
+  `tool_type` varchar(255) NOT NULL,
+  `tool_image` varchar(255) NOT NULL,
+  `tool_quantity` int(11) NOT NULL,
+  `tool_sales_rate` decimal(10,2) NOT NULL,
+  `tool_sales_brand` varchar(100) NOT NULL,
+  `date_time` date DEFAULT current_timestamp()
+)
+CREATE TABLE `productreviews` (
+  `id` int(11) NOT NULL,
+  `productId` int(11) DEFAULT NULL,
+  `quality` int(11) DEFAULT NULL,
+  `price` int(11) DEFAULT NULL,
+  `value` int(11) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `summary` varchar(255) DEFAULT NULL,
+  `review` longtext DEFAULT NULL,
+  `reviewDate` timestamp NOT NULL DEFAULT current_timestamp()
+)
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL,
+  `category` int(11) NOT NULL,
+  `productName` varchar(255) NOT NULL,
+  `productCompany` varchar(255) NOT NULL,
+  `productPriceBeforeDiscount` decimal(10,2) NOT NULL,
+  `productPrice` decimal(10,2) NOT NULL,
+  `productDescription` text NOT NULL,
+  `productImage1` varchar(255) DEFAULT NULL,
+  `productImage2` varchar(255) DEFAULT NULL,
+  `productImage3` varchar(255) DEFAULT NULL,
+  `shippingCharge` decimal(10,2) NOT NULL,
+  `productAvailability` enum('In Stock','Out of Stock') NOT NULL,
+  `postingDate` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updationDate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `paymentMethod` enum('Online','COD','Both') NOT NULL DEFAULT 'Both'
+) 
+CREATE TABLE `rental_tools` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `tool_type` varchar(255) NOT NULL,
+  `phone_no` varchar(20) DEFAULT NULL,
+  `check_out_date` date DEFAULT NULL,
+  `check_in_date` datetime DEFAULT NULL,
+  `given_by` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL
+)
+CREATE TABLE `tool_rental_list` (
+  `tool_list_id` int(11) NOT NULL,
+  `tool_type` varchar(255) NOT NULL,
+  `tool_image` varchar(255) NOT NULL,
+  `tool_quantity` int(11) NOT NULL,
+  `tool_rent_rate` decimal(10,2) NOT NULL,
+  `tool_brand` varchar(100) NOT NULL,
+  `date_time` date DEFAULT current_timestamp()
+)
+CREATE TABLE `users` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `fname` varchar(255) DEFAULT NULL,
+  `lname` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `password` varchar(300) DEFAULT NULL,
+  `contactno` varchar(11) DEFAULT NULL,
+  `posting_date` timestamp NOT NULL DEFAULT current_timestamp()
+) 
+CREATE TABLE `wishlist` (
+  `id` int(11) NOT NULL,
+  `userId` int(11) DEFAULT NULL,
+  `productId` int(11) DEFAULT NULL,
+  `postingDate` timestamp NOT NULL DEFAULT current_timestamp()
+)
